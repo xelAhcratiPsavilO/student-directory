@@ -24,7 +24,7 @@ def print(students)
 	puts "What letter are you looking for?"
 	letter = gets.chomp
   students.each_with_index do |student, i|
-		if "#{student[:name]}".start_with?(letter.upcase)
+		if "#{student[:name]}".start_with?(letter.upcase) and "#{student[:name]}".length < 12
   	  puts (i + 1).to_s + ". #{student[:name]} (#{student[:cohort]} cohort)"
 		end
   end
