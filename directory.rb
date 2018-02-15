@@ -32,7 +32,7 @@ def print(students)
 	i = 0
 	while i < students.length do
 		if "#{students[i][:name]}".start_with?(letter.upcase) and "#{students[i][:name]}".length < 12
-  	  puts (i + 1).to_s + ". #{students[i][:name]} (#{students[i][:cohort]} cohort) who loves #{students[i][:hobbies]} and comes from #{students[i][:origin]}. #{students[i][:name]} is #{students[i][:height]}cm tall."
+  	  puts "#{(i + 1)}. #{students[i][:name]} (#{students[i][:cohort]} cohort) who loves #{students[i][:hobbies]} and comes from #{students[i][:origin]}. #{students[i][:name]} is #{students[i][:height]}cm tall.".center(150,"-")
 		end
 		i += 1
   end
