@@ -7,8 +7,14 @@ def input_students
 	name = gets.chomp
 	# while the name is not empty, repeat this code
 	while !name.empty? do
+	  puts "What is your hobby"
+	  hobby = gets.chomp
+	  puts "Where do you come from?"
+	  country = gets.chomp
+	  puts "How tall are you?"
+	  tall = gets.chomp
 		#add the student hash to the array
-		students << {name: name, cohort: :november}
+		students << {name: name, cohort: :november, hobbies: hobby, origin: country, height: tall}
 		puts "Now we have #{students.count} students"
 		# get another name from the user
 		name = gets.chomp
@@ -24,9 +30,9 @@ def print(students)
 	puts "What letter are you looking for?"
 	letter = gets.chomp
 	i = 0
-	while i < students.length
+	while i < students.length do
 		if "#{students[i][:name]}".start_with?(letter.upcase) and "#{students[i][:name]}".length < 12
-  	  puts (i + 1).to_s + ". #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+  	  puts (i + 1).to_s + ". #{students[i][:name]} (#{students[i][:cohort]} cohort) who loves #{students[i][:hobbies]} and comes from #{students[i][:origin]}. #{students[i][:name]} is #{students[i][:height]}cm tall."
 		end
 		i += 1
   end
