@@ -6,12 +6,15 @@ def input_students
 	# get the first name
 	name = gets.chomp
 	# while the name is not empty, repeat this code
+
 	while !name.empty? do
 	  puts "What cohort are you part of?"
-	  month = gets.chomp
+	  month = gets.chomp.upcase
+
 		  if month == ""
-				month = "february"
+				month = "FEBRUARY"
 			end
+
 		puts "What is your hobby?"
 		hobby = gets.chomp
 	  puts "Where do you come from?"
@@ -24,24 +27,32 @@ def input_students
 		# get another name from the user
 		name = gets.chomp
 	end
+
 	# return the array of input_students
 	students
 end
+
 def print_header
   puts "The students of my cohort at Makers Academy"
   puts "-------------"
 end
+
 def print(students)
 	puts "What letter are you looking for?"
 	letter = gets.chomp
 	i = 0
+
 	while i < students.length do
+
 		if "#{students[i][:name]}".start_with?(letter.upcase) and "#{students[i][:name]}".length < 12
   	  puts "#{(i + 1)}. #{students[i][:name]} (#{students[i][:cohort]} cohort) who loves #{students[i][:hobbies]} and comes from #{students[i][:origin]}. #{students[i][:name]} is #{students[i][:height]}cm tall.".center(150,"-")
 		end
+
 		i += 1
   end
+
 end
+
  def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
@@ -50,3 +61,19 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+
+cohort = {}
+
+students.each do |x|
+  cohorts = x[:cohort]
+  person = x[:name]
+
+  if cohort[cohorts] == nil
+    cohort[cohorts] = [person]
+  else
+    cohort[cohorts].push(person)
+  end
+
+end
+
+puts cohort.to_a
