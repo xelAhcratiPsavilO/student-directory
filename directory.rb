@@ -23,10 +23,12 @@ end
 def print(students)
 	puts "What letter are you looking for?"
 	letter = gets.chomp
-  students.each_with_index do |student, i|
-		if "#{student[:name]}".start_with?(letter.upcase) and "#{student[:name]}".length < 12
-  	  puts (i + 1).to_s + ". #{student[:name]} (#{student[:cohort]} cohort)"
+	i = 0
+	while i < students.length
+		if "#{students[i][:name]}".start_with?(letter.upcase) and "#{students[i][:name]}".length < 12
+  	  puts (i + 1).to_s + ". #{students[i][:name]} (#{students[i][:cohort]} cohort)"
 		end
+		i += 1
   end
 end
  def print_footer(names)
