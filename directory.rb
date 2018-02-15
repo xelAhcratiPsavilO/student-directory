@@ -21,8 +21,12 @@ def print_header
   puts "-------------"
 end
 def print(students)
+	puts "What letter are you looking for?"
+	letter = gets.chomp
   students.each_with_index do |student, i|
-  	puts (i + 1).to_s + ". #{student[:name]} (#{student[:cohort]} cohort)"
+		if "#{student[:name]}".start_with?(letter.upcase)
+  	  puts (i + 1).to_s + ". #{student[:name]} (#{student[:cohort]} cohort)"
+		end
   end
 end
  def print_footer(names)
