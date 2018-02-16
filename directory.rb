@@ -4,10 +4,10 @@ def input_students
 	# create an empty array
 	students = []
 	# get the first name
-	name = gets.chomp
+	name = gets
 	# while the name is not empty, repeat this code
 	while !name.empty? do
-	  puts "What cohort are you part of?"
+	  puts "What cohort are you part of?".gsub(/[W]/, "\nW")
 	  month = gets.chomp.upcase
 		  if month == ""
 				month = "FEBRUARY"
