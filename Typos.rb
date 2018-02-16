@@ -5,6 +5,10 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  if name == ""
+    puts "There are no students, end of the class!"
+    exit
+  end
   # while the name is not empty, repeat this code
   while !name.empty? do
   # add the student hash to the array

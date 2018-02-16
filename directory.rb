@@ -21,7 +21,12 @@ def input_students
 		#add the student hash to the array
 		students << {name: name, cohort: month, hobbies: hobby, origin: country, height: tall}
 		if students.count == 1
-			puts "Now we have 1 student"
+			if name == "\n"
+				puts "There are no students, end of the class!"
+				exit
+			else
+			  puts "Now we have 1 student"
+			end
 		else
 		  puts "Now we have #{students.count} students"
 		end
