@@ -53,7 +53,8 @@ def print(students)
 		i += 1
   end
 end
- def print_footer(names)
+
+def print_footer(names)
 	 if names.count == 1
 		 puts "Overall, we have 1 great student"
 	 else
@@ -63,19 +64,22 @@ end
 
 students = input_students
 
+def cohort(students)
+  cohort = {}
+  students.each do |x|
+    cohorts = x[:cohort]
+    person = x[:name]
+    if cohort[cohorts] == nil
+      cohort[cohorts] = [person]
+    else
+      cohort[cohorts].push(person)
+    end
+  end
+  puts cohort.to_a
+end
+
 #nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)
-
-cohort = {}
-students.each do |x|
-  cohorts = x[:cohort]
-  person = x[:name]
-  if cohort[cohorts] == nil
-    cohort[cohorts] = [person]
-  else
-    cohort[cohorts].push(person)
-  end
-end
-puts cohort.to_a
+cohort(students)
