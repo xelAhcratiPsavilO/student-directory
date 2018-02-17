@@ -102,20 +102,26 @@ def save_students
   file.close
 	puts "Students list succesfully saved"
 end
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(', ')
-		storage_student(name, cohort.to_sym)
+def load_students
+	puts "Which file do you want to retrieve the data from?"
+	filename = gets.chomp
+	if File.exists?(filename) # if it exists
+	  file = File.open(filename, "r")
+	  file.readlines.each do |line|
+	    name, cohort = line.chomp.split(', ')
+	 	  storage_student(name, cohort.to_sym)
+		puts "Loaded #{@students.count} from #{filename}"
+	  end
+	  file.close
+	 	puts "Students data base succesfully retrieved"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
   end
-  file.close
-	puts "Students data base succesfully retrieved"
 end
 def try_load_students
   filename = ARGV.first # first argument from the command line
-  if filename.nil? # get out of the method if it isn't given
-    load_students(filename = "students.csv")
-		puts "Loaded #{@students.count} from #{filename}"
+  if filename.nil?
 		return
 	end
 	if File.exists?(filename) # if it exists
