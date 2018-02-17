@@ -7,22 +7,23 @@ end
 def input_students
 	puts "\nPlease enter the names of the students. To finish, just hit return"
 	# get the first name
-	name = STDIN.gets.chomp
+	name = gets.chomp
 	if name == ""
 		puts "There are no new students, end of the class!\n\n"
 		return
   end
 	# while the name is not empty, repeat this code
 	while !name.empty? do
-		storage_student(name, cohort.to_sym)
 		if @students.count == 1
 			  puts "Now we have 1 student"
 		else
 		  puts "Now we have #{@students.count} students"
 		end
+		storage_student(name)
 		# get another name from the user
-		name = STDIN.gets.chomp
+		name = gets.chomp
 	end
+	puts "Students list succesfully updated"
 end
 
 def print_header
@@ -71,6 +72,7 @@ def cohort
     end
   end
   puts cohort.to_a
+	puts "Students list succesfully displayed"
 end
 
 def print_menu
@@ -96,6 +98,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+	puts "Students list succesfully saved"
 end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
@@ -104,6 +107,7 @@ def load_students(filename = "students.csv")
 		storage_student(name, cohort.to_sym)
   end
   file.close
+	puts "Students data base succesfully retrieved"
 end
 def try_load_students
   filename = ARGV.first # first argument from the command line
