@@ -1,4 +1,3 @@
-
 @students = [] # an empty array accessible to all methods
 
 def storage_student(name, cohort = :FEBRUARY)
@@ -6,8 +5,7 @@ def storage_student(name, cohort = :FEBRUARY)
 end
 
 def input_students
-	puts "\nPlease enter the names of the students"
-	puts "\nTo finish, just hit return"
+	puts "\nPlease enter the names of the students. To finish, just hit return"
 	# get the first name
 	name = STDIN.gets.chomp
 	if name == ""
@@ -29,7 +27,7 @@ end
 
 def print_header
   puts "The students of Makers Academy"
-  puts "-------------"
+  puts "------------------------------"
 end
 
 def print_students_list
