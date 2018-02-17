@@ -1,6 +1,10 @@
 
 @students = [] # an empty array accessible to all methods
 
+def storage_student(name, cohort = :FEBRUARY)
+	@students << {name: name, cohort: cohort}
+end
+
 def input_students
 	puts "\nPlease enter the names of the students"
 	puts "\nTo finish, just hit return"
@@ -12,12 +16,7 @@ def input_students
   end
 	# while the name is not empty, repeat this code
 	while !name.empty? do
-	  puts "What cohort are you part of?"
-	  month = gets.chomp.upcase
-		  if month == ""
-				month = "FEBRUARY"
-			end
-		@students << {name: name, cohort: month}
+		storage_student(name, cohort.to_sym)
 		if @students.count == 1
 			  puts "Now we have 1 student"
 		else
@@ -104,7 +103,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(', ')
-    @students << {name: name, cohort: cohort.to_sym}
+		storage_student(name, cohort.to_sym)
   end
   file.close
 end
