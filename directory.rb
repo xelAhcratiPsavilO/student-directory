@@ -90,7 +90,9 @@ def show_students
 end
 def save_students
   # open the file for writing
-  file = File.open("students.csv", "w")
+	puts "Where would you like to save your students list?"
+	students_list_name = gets.chomp
+  file = File.open("#{students_list_name}.csv", "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
