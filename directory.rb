@@ -14,12 +14,12 @@ def input_students
   end
 	# while the name is not empty, repeat this code
 	while !name.empty? do
+	storage_student(name)
 		if @students.count == 1
 			  puts "Now we have 1 student"
 		else
 		  puts "Now we have #{@students.count} students"
 		end
-		storage_student(name)
 		# get another name from the user
 		name = gets.chomp
 	end
@@ -92,27 +92,27 @@ def save_students
   # open the file for writing
 	puts "Where would you like to save your students list?"
 	students_list_name = gets.chomp
-  file = File.open("#{students_list_name}.csv", "w")
+  File.open("#{students_list_name}.csv", "w") do |file|
   # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(", ")
-    file.puts csv_line
-  end
-  file.close
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(", ")
+      file.puts csv_line
+    end
+	end
 	puts "Students list succesfully saved"
 end
 def load_students
 	puts "Which file do you want to retrieve the data from?"
 	filename = gets.chomp
 	if File.exists?(filename) # if it exists
-	  file = File.open(filename, "r")
-	  file.readlines.each do |line|
-	    name, cohort = line.chomp.split(', ')
-	 	  storage_student(name, cohort.to_sym)
-		puts "Loaded #{@students.count} from #{filename}"
-	  end
-	  file.close
+	  File.open(filename, "r") do |file|
+	    file.readlines.each do |line|
+	      name, cohort = line.chomp.split(', ')
+	 	    storage_student(name, cohort.to_sym)
+	    end
+	    puts "Loaded #{@students.count} from #{filename}"
+		end
 	 	puts "Students data base succesfully retrieved"
   else # if it doesn't exist
     puts "Sorry, #{filename} doesn't exist."
